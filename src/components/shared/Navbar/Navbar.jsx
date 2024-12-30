@@ -47,6 +47,7 @@ const Navbar = () => {
         <button className="px-8 py-3 border border-blue-500 hover:border-0 hover:bg-blue-500 text-blue-500 hover:text-white rounded-md">
           Appointment
         </button>
+        <Link href={'/login'} className="hover:text-blue-500">Login</Link>
       </div>
     </nav>
   );
