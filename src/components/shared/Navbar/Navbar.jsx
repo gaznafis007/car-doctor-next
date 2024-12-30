@@ -27,7 +27,7 @@ const Navbar = () => {
     },
   ];
   return (
-    <nav className="flex flex-row justify-between px-8 py-6 items-center">
+    <nav className="flex flex-row justify-between  py-6 items-center">
       <Link href={'/'}>
         <Image alt="logo" src={"/assets/logo.svg"} height={100} width={80} />
       </Link>
