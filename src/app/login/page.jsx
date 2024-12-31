@@ -67,7 +67,7 @@ const Login = () => {
         </button>
         <p className="mt-8 font-semibold text-center">Or Login in with</p>
         <div className="mt-4 md:mt-8 flex flex-row justify-center items-center space-x-8">
-          <button className="p-3 rounded-full text-xl bg-slate-200 text-blue-500 cursor-pointer">
+          <button onClick={() =>handleSocial('facebook')} className="p-3 rounded-full text-xl bg-slate-200 text-blue-500 cursor-pointer">
             <FaFacebookF />
           </button>
           <button className="p-3 rounded-full text-xl bg-slate-200 text-blue-300 cursor-pointer">

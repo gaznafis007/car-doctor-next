@@ -45,12 +45,20 @@ const handler = NextAuth({
     GoogleProvider({
         clientId: process.env.NEXT_PUBLIC_GOOGLE_CLIENT_ID,
         clientSecret: process.env.NEXT_PUBLIC_GOOGLE_CLIENT_SECRET
+    }),
+    FaceBookProvider({
+        clientId: process.env.NEXT_PUBLIC_FACEBOOK_CLIENT_ID,
+        clientSecret: process.env.NEXT_PUBLIC_FACEBOOK_CLIENT_SECRET
+    }),
+    LinkedInProvider({
+        clientId: process.env.NEXT_PUBLIC_LINKEDIN_CLIENT_ID,
+        clientSecret: process.env.NEXT_PUBLIC_LINKEDIN_CLIENT_SECRET
     })
   ],
   callbacks: {
     async signIn({user, account}) {
         console.log('account', account?.provider)
-        if(account.provider == 'google'){
+        if(account.provider == 'google' || account.provider == 'facebook'){
             console.log('working', "inside googleProvider")
             const db = await connectDB();
             const userCollection = await db.collection('users');
