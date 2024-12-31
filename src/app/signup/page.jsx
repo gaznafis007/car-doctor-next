@@ -27,9 +27,11 @@ const SignUp = () => {
       body: JSON.stringify(user)
     })
     const data = await res.json();
-    console.log(data)
-    form.reset()
+    // console.log(data)
     setLoading(false)
+    if(data?.acknowledged){
+      form.reset()
+    }
   }
   return (
     <section className="my-8 md:my-16 flex flex-col md:flex-row items-center md:justify-between space-x-3">

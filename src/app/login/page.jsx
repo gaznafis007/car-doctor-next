@@ -2,10 +2,20 @@
 import Image from "next/image";
 import Link from "next/link";
 import { FaFacebookF, FaGoogle, FaLinkedinIn } from "react-icons/fa";
+import {signIn} from 'next-auth/react'
 
 const Login = () => {
-  const handleLogin = () =>{
+  const handleLogin = async (event) =>{
+    event.preventDefault();
+    const email = event.target.email.value;
+    const password = event.target.password.value;
 
+    const res = signIn('credentials', {
+      email,
+      password,
+      redirect: false
+    })
+    console.log(res)
   }
   return (
     <section className="my-8 md:my-16 flex flex-col md:flex-row items-center md:justify-between space-x-3">
