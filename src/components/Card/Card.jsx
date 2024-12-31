@@ -7,7 +7,7 @@ const Card = ({image, title, number}) => {
     return (
         <div className='shadow-sm p-6 rounded-md border border-zinc-200 flex flex-col'>
             <div className='w-full  mx-auto'>
-                <Image className='rounded-md' src={'/assets/images/banner/3.jpg'} alt={title} width={720} height={720}/>
+                <Image className='rounded-md' src={image ? image : '/assets/images/banner/3.jpg'} alt={title} width={720} height={720}/>
             </div>
             
                 <h1 className="mt-4 text-xl font-bold text-slate-900">{title}</h1>

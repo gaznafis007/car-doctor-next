@@ -1,9 +1,13 @@
+'use client'
+import { signOut, useSession } from "next-auth/react";
 import Image from "next/image";
 import Link from "next/link";
 import { IoIosSearch } from "react-icons/io";
 import { MdOutlineShoppingBag } from "react-icons/md";
 
 const Navbar = () => {
+  const session = useSession();
+  console.log(session)
   const navItems = [
     {
       name: "home",
@@ -47,7 +51,18 @@ const Navbar = () => {
         <button className="px-8 py-3 border border-blue-500 hover:border-0 hover:bg-blue-500 text-blue-500 hover:text-white rounded-md">
           Appointment
         </button>
-        <Link href={'/login'} className="hover:text-blue-500">Login</Link>
+        {
+          session?.data?.user?.email ? 
+          <>
+          {
+            session?.data?.user?.image && <img src={session?.data?.user?.image} alt="profile-image" className="w-12 rounded-full mr-4"/>
+          }
+          {
+            <button onClick={signOut} className="hover:text-blue-500">Logout</button>
+          }
+          </>:
+          <Link href={'/login'} className="hover:text-blue-500">Login</Link>
+        }
       </div>
     </nav>
   );

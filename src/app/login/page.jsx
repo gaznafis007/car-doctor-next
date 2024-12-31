@@ -2,20 +2,32 @@
 import Image from "next/image";
 import Link from "next/link";
 import { FaFacebookF, FaGoogle, FaLinkedinIn } from "react-icons/fa";
-import {signIn} from 'next-auth/react'
+import {signIn, useSession} from 'next-auth/react'
+import { useRouter } from "next/navigation";
+
 
 const Login = () => {
+  const router = useRouter();
+  const session = useSession()
   const handleLogin = async (event) =>{
     event.preventDefault();
     const email = event.target.email.value;
     const password = event.target.password.value;
-
-    const res = signIn('credentials', {
+    const res = await signIn('credentials', {
       email,
       password,
-      redirect: false
+      redirect:false
     })
-    console.log(res)
+    if(res.ok){
+      router.push('/')
+    }
+  }
+  const handleSocial = async (provider) =>{
+    const res = await signIn(provider);
+
+  }
+  if(session.status == 'authenticated'){
+    router.push('/')
   }
   return (
     <section className="my-8 md:my-16 flex flex-col md:flex-row items-center md:justify-between space-x-3">
@@ -61,9 +73,9 @@ const Login = () => {
           <button className="p-3 rounded-full text-xl bg-slate-200 text-blue-300 cursor-pointer">
             <FaLinkedinIn />
           </button>
-          <p className="p-3 rounded-full text-xl bg-slate-200 text-green-500 cursor-pointer">
+          <button onClick={() =>handleSocial('google')} className="p-3 rounded-full text-xl bg-slate-200 text-green-500 cursor-pointer">
             <FaGoogle />
-          </p>
+          </button>
         </div>
         <p className="mt-12 font-semibold text-center">
           New to Card Doctor?{" "}

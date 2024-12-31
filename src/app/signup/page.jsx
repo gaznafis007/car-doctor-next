@@ -19,7 +19,7 @@ const SignUp = () => {
       email,
       password
     }
-    const res = await fetch('/signup/api',{
+    const res = await fetch('/api/signup',{
       method: 'POST',
       headers:{
         'content-type': 'application/json',
