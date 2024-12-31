@@ -1,11 +1,35 @@
 'use client'
 import Image from "next/image";
 import Link from "next/link";
+import { useState } from "react";
 import { FaFacebookF, FaGoogle, FaLinkedinIn } from "react-icons/fa";
 
 const SignUp = () => {
-  const handleSignUp = () =>{
+  const [loading, setLoading] = useState(false)
+  const handleSignUp = async (event) =>{
+    event.preventDefault();
+    setLoading(true)
+    const form = event.target;
+    const name = form.name.value
+    const email = form.email.value
+    const password = form.password.value
 
+    const user ={
+      name,
+      email,
+      password
+    }
+    const res = await fetch('/signup/api',{
+      method: 'POST',
+      headers:{
+        'content-type': 'application/json',
+      },
+      body: JSON.stringify(user)
+    })
+    const data = await res.json();
+    console.log(data)
+    form.reset()
+    setLoading(false)
   }
   return (
     <section className="my-8 md:my-16 flex flex-col md:flex-row items-center md:justify-between space-x-3">
@@ -50,7 +74,7 @@ const SignUp = () => {
           type="submit"
           className="bg-blue-500 px-8 py-3 rounded-md text-white hover:bg-transparent hover:border hover:border-blue-500 hover:text-blue-500 capitalize block w-full mt-4"
         >
-          Sign up
+          {loading ? 'Loading...' : 'Sign up'}
         </button>
         <p className="mt-8 font-semibold text-center">Or Login in with</p>
         <div className="mt-4 md:mt-8 flex flex-row justify-center items-center space-x-8">
