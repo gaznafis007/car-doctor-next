@@ -3,7 +3,7 @@ import Link from 'next/link';
 import React from 'react';
 import { FiArrowRight } from 'react-icons/fi';
 
-const Card = ({image, title, number}) => {
+const Card = ({image, title, number, id}) => {
     return (
         <div className='shadow-sm p-6 rounded-md border border-zinc-200 flex flex-col'>
             <div className='w-full  mx-auto'>
@@ -12,8 +12,8 @@ const Card = ({image, title, number}) => {
             
                 <h1 className="mt-4 text-xl font-bold text-slate-900">{title}</h1>
             <div className="flex flex-row justify-between items-center">
-            <h1 className="mt-2 text-xl font-bold text-blue-500">Price:${title}</h1>
-            <Link className='text-slate-800 text-xl hover:text-blue-500' href={'/'}>
+            <h1 className="mt-2 text-xl font-bold text-blue-500">Price:${number}</h1>
+            <Link className='text-slate-800 text-xl hover:text-blue-500' href={`/services/${id}`}>
             <FiArrowRight/>
             </Link>
             </div>
