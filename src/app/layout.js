@@ -3,7 +3,7 @@ import "./globals.css";
 
 import Footer from "@/components/shared/Footer/Footer";
 import Navbar from "@/components/shared/Navbar/Navbar";
-
+import AuthProvider from "@/services/AuthProvider";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -17,8 +17,8 @@ const geistMono = Geist_Mono({
 
 export const metadata = {
   title: {
-    default: 'Car Doctor',
-    template: "$S | Car Doctor"
+    default: "Car Doctor",
+    template: "$S | Car Doctor",
   },
   description: "A next js car website",
 };
@@ -29,9 +29,11 @@ export default function RootLayout({ children }) {
       <body
         className={`${geistSans.variable} ${geistMono.variable} bg-white md:mx-12`}
       >
-        <Navbar/>
-        {children}
-        <Footer/>
+        <AuthProvider>
+          <Navbar />
+          {children}
+          <Footer />
+        </AuthProvider>
       </body>
     </html>
   );
